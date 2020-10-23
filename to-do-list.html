@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="https://a.thumbs.redditmedia.com/zDOFJTXd6fmlD58VDGypiV94Leflz11woxmgbGY6p_4.png">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <title>to do list</title>
+</head>
+
+<body>
+    <div class="container1">
+
+        <nav>
+            <div class="navbar">
+                <a href="#">SAL.com</a>
+                <a href="http://127.0.0.1:5500/home-page.html">home</a>
+                <a href="http://127.0.0.1:5500/about.html">to do list</a>
+                <a href="http://127.0.0.1:5500/projects.html">calculator</a>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div class="addTask">
+                <input type="text" placeholder="Add a Task">
+                <button>Add</button>
+            </div>
+
+            <ol class="notCompleted">
+                <h3>Not Completed</h3>
+            </ol>
+
+            <ol class="Completed">
+                <h3>Completed</h3>
+            </ol>
+        </div>
+        <footer>
+
+            <div class="footer">
+
+                <div>
+
+                    <a href="https://github.com/sajadahamsheh" class="fa fa-github">
+                    </a>
+                    <p style="position: relative; left: 2rem;bottom: 1.5rem; ">saja </p>
+                </div>
+                <div>
+
+                    <a href="https://github.com/anasJawabrah" class="fa fa-github"></a>
+                    <p style="position: relative; left: 2rem;bottom: 1.5rem; ">anas </p>
+                </div>
+                <div>
+
+                    <a href="https://github.com/lubna-almaaweed" class="fa fa-github"></a>
+
+
+                    <p style="position: relative; left: 2rem;bottom: 1.5rem; ">lubna </p>
+                </div>
+
+                <div class="dropup">
+                    <button class="dropbtn">Dropup</button>
+                    <div class="dropup-content">
+                        <a id="co" onclick="change()"> change them</a>
+                        <a id="co" onclick="noChange()"> rest changing</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+    </div>
+
+    <script>
+        //changing theme
+
+        //whihe change
+        function change() {
+            document.body.style.backgroundColor = prompt('Enter your background color ');
+            let myElements = document.querySelectorAll("li");
+            let myElement = document.querySelectorAll("li");
+
+            for (let i = 0; i <= myElements.length; i++) {
+                myElements[i].style.fontSize = prompt('Enter your font Size ');
+            }
+            for (let i = 0; i <= myElements.length; i++) {
+                myElement[i].style.fontFamily = "Impact,Charcoal,sans-serif";
+            }
+
+        }
+        //whithout changing
+        function noChange() {
+            document.body.style.backgroundColor = "white";
+            let myElements = document.querySelectorAll("li");
+
+            for (let i = 0; i <= myElements.length; i++) {
+                myElements[i].style.fontSize = "1.15rem";
+            }
+
+
+        }
+        //to do list
+        const input = document.querySelector('input');
+        const btn = document.querySelector('.addTask > button');
+
+        btn.addEventListener('click', addList);
+        input.addEventListener('keyup', (e) => {
+            (e.keyCode === 13 ? addList(e) : null);
+        })
+
+        function addList(e) {
+            const notCompleted = document.querySelector('.notCompleted');
+            const Completed = document.querySelector('.Completed');
+
+            const newLi = document.createElement('li');
+            const checkBtn = document.createElement('button');
+            const delBtn = document.createElement('button');
+
+            checkBtn.innerHTML = '<i class="fa fa-check"></i>';
+            delBtn.innerHTML = '<i class="fa fa-trash"></i>';
+
+
+            if (input.value !== '') {
+                newLi.textContent = input.value;
+                input.value = '';
+                notCompleted.appendChild(newLi);
+                newLi.appendChild(checkBtn);
+                newLi.appendChild(delBtn);
+            }
+
+            checkBtn.addEventListener('click', function () {
+                const parent = this.parentNode;
+                parent.remove();
+                Completed.appendChild(parent);
+                checkBtn.style.display = 'none';
+            });
+
+            delBtn.addEventListener('click', function () {
+                const parent = this.parentNode;
+                parent.remove();
+            });
+        }
+    </script>
+
+</body>
+
+</html>
